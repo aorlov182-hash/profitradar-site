@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfitRadar MP — AI-финансовый директор для селлеров WB и Ozon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: white;
+            color: #1a202c;
+            padding: 80px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #fff5f0;
+            color: #ff6b35;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            font-weight: 800;
+            color: #1a202c;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #718096;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #4299e1;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(66, 153, 225, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(66, 153, 225, 0.4);
+            background: #3182ce;
+        }
+
+        .cta-button.orange {
+            background: #ff6b35;
+            box-shadow: 0 6px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button.orange:hover {
+            background: #e55a2b;
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            background: #f5f5f7;
+        }
+
+        .problem-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .problem-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1a202c;
+            line-height: 1.2;
+        }
+
+        .problem-text p {
+            font-size: 1.1rem;
+            color: #718096;
+            line-height: 1.7;
+        }
+
+        .problem-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #2d3748;
+            flex: 1;
+        }
+
+        .stat-bar {
+            flex: 2;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin: 0 20px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: #ff6b35;
+            border-radius: 4px;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #ff6b35;
+            min-width: 50px;
+            text-align: right;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .solution-header {
+            margin-bottom: 60px;
+        }
+
+        .solution-label {
+            color: #ff6b35;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .solution h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .solution p {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 600px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            background: #f9fafb;
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-size: 1.3rem;
+        }
+
+        .feature p {
+            color: #718096;
+        }
+
+        /* AI Future Section */
+        .ai-future {
+            padding: 100px 0;
+            background: #1a202c;
+            color: white;
+        }
+
+        .ai-future .section-title {
+            color: white;
+        }
+
+        .ai-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #a0aec0;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: #ff6b35;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .ai-feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ai-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 107, 53, 0.5);
+        }
+
+        .ai-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .ai-feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #ff6b35;
+        }
+
+        .ai-feature p {
+            color: #cbd5e0;
+            line-height: 1.7;
+        }
+
+        .ai-example {
+            background: rgba(255, 107, 53, 0.1);
+            border-left: 3px solid #ff6b35;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+
+        .coming-soon {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 20px;
+            border: 2px dashed rgba(255, 107, 53, 0.4);
+        }
+
+        .coming-soon h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .coming-soon p {
+            color: #a0aec0;
+            font-size: 1.1rem;
+        }
+
+        /* Ecosystem Section */
+        .ecosystem {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .ecosystem-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: #f9fafb;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .ecosystem-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .ecosystem-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .ecosystem-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: #f8f9fa;
+            position: relative;
+        }
+
+        .pricing-header {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .pricing-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a202c;
+            text-align: left;
+        }
+
+        .pricing-number {
+            position: absolute;
+            top: -30px;
+            right: 0;
+            font-size: 10rem;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.04);
+            line-height: 1;
+            user-select: none;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+        }
+
+        .pricing-card {
+            border-radius: 16px;
+            padding: 40px 35px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.free {
+            background: #1a202c;
+            color: white;
+        }
+
+        .pricing-card.pro {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+        }
+
+        .pricing-card-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card.free .pricing-card-label {
+            color: #a0aec0;
+        }
+
+        .pricing-card.pro .pricing-card-label {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .pricing-card-price {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1;
+        }
+
+        .pricing-card-price span {
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 18px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 1.05rem;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            margin-right: 12px;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+            min-width: 20px;
+        }
+
+        .pricing-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 18px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pricing-card.free .pricing-button {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .pricing-card.free .pricing-button:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+
+        .pricing-pro-note {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 16px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: white;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .pricing-pro-note code {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .pricing-badge-soon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .faq .section-title {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a202c;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .faq-question {
+            padding: 25px 0;
+            font-weight: 700;
+            font-size: 1.15rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            color: #1a202c;
+            background: transparent;
+        }
+
+        .faq-question:hover {
+            color: #ff6b35;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.8rem;
+            color: #718096;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .faq-answer {
+            padding: 0 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            color: #718096;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 0 25px 0;
+            max-height: 300px;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '×';
+            color: #1a202c;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: #ff6b35;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #f8f9fa;
+            color: #718096;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .pricing-header h2 {
+                font-size: 2rem;
+            }
+
+            .pricing-number {
+                font-size: 5rem;
+                top: -10px;
+            }
+
+            .faq .section-title {
+                font-size: 2rem;
+            }
+
+            .problem-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card-price {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">ProfitRadar MP</div>
+            <h1>Ты продаёшь на маркетплейсе, но не знаешь свою реальную прибыль?</h1>
+            <p class="subtitle">ProfitRadar MP показывает, сколько ты зарабатываешь на каждой единице товара после всех комиссий, логистики и возвратов. Без Excel, без догадок.</p>
+            <a href="https://t.me/ProfitRadar_mp_bot" class="cta-button">Рассчитать мою маржу →</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="problem-content">
+                <div class="problem-text">
+                    <h2>67% селлеров не знают свою реальную маржинальность</h2>
+                    <p>Комиссии WB и Ozon меняются каждый месяц. Логистика, хранение, возвраты, штрафы съедают прибыль незаметно. Ты видишь оборот в личном кабинете и думаешь, что всё ок. А потом смотришь на расчётный счёт и не понимаешь, куда делись деньги.</p>
+                </div>
+                <div class="problem-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Комиссия МП</span>
+                        <div class="stat-bar"><div class="stat-bar-fill" style="width: 60%"></div></div>
+                        <span class="stat-value">15%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Логистика</span>
+                        <div class="stat-bar"><div class="stat-bar-fill" style="width: 48%"></div></div>
+                        <span class="stat-value">12%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Хранение</span>
+                        <div class="stat-bar"><div class="stat-bar-fill" style="width: 28%"></div></div>
+                        <span class="stat-value">7%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Возвраты</span>
+                        <div class="stat-bar"><div class="stat-bar-fill" style="width: 36%"></div></div>
+                        <span class="stat-value">9%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Штрафы</span>
+                        <div class="stat-bar"><div class="stat-bar-fill" style="width: 12%"></div></div>
+                        <span class="stat-value">3%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-header">
+                <div class="solution-label">Решение</div>
+                <h2>Контроль прибыли в одном экране</h2>
+                <p>Калькулятор юнит-экономики, который учитывает все скрытые расходы маркетплейсов. Видишь реальную картину по каждому SKU.</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon"></div>
+                    <h3>Мгновенный расчет</h3>
+                    <p>Введите 3 цифры — получите чистую прибыль за 10 секунд</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Точность 99%</h3>
+                    <p>Актуальные комиссии WB и Ozon обновляются автоматически</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💡</div>
+                    <h3>Умные советы</h3>
+                    <p>Бот подскажет, если маржа критически низкая</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Future Section -->
+    <section class="ai-future">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="ai-badge">🚀 Скоро в ProfitRadar</span>
+            </div>
+            <h2 class="section-title">AI-финансовый директор для вашего бизнеса</h2>
+            <p class="ai-subtitle">Мы не просто считаем маржу. Мы превращаем ProfitRadar в полноценного AI-ассистента, который работает на вас 24/7. Вот что уже в разработке:</p>
+
+            <div class="ai-features">
+                <div class="ai-feature">
+                    <span class="ai-feature-icon">📊</span>
+                    <h3>Утренний AI-отчет</h3>
+                    <p>Каждое утро бот присылает анализ за вчера: сколько вы заработали, где потеряли, что нужно изменить.</p>
+                    <div class="ai-example">
+                        "За вчера вы потеряли 4 870 ₽. Причины: выросла комиссия WB, упал выкуп. Что делать: поднимите цену на 29 ₽."
+                    </div>
+                </div>
+
+                <div class="ai-feature">
+                    <span class="ai-feature-icon">️</span>
+                    <h3>Прогноз убытков</h3>
+                    <p>AI анализирует тренды и предупреждает за неделю, если товар станет убыточным.</p>
+                    <div class="ai-example">
+                        "Внимание! Товар 'Чехол iPhone 15' через 7 дней выйдет в минус из-за роста комиссии. Рекомендация: поднять цену на 45 ₽."
+                    </div>
+                </div>
+
+                <div class="ai-feature">
+                    <span class="ai-feature-icon"></span>
+                    <h3>Автоматические рекомендации по ценам</h3>
+                    <p>AI анализирует конкурентов, комиссии и спрос, чтобы предложить оптимальную цену.</p>
+                    <div class="ai-example">
+                        "Поднимите цену с 1 290 ₽ до 1 349 ₽ — это увеличит маржу на 18% без потери продаж."
+                    </div>
+                </div>
+
+                <div class="ai-feature">
+                    <span class="ai-feature-icon">📈</span>
+                    <h3>Анализ возвратов и выкупов</h3>
+                    <p>AI отслеживает процент выкупа и находит товары, которые "съедают" прибыль на логистике.</p>
+                    <div class="ai-example">
+                        "Товар 'Платье летнее' имеет выкуп 23%. Вы теряете 340 ₽ на каждой единице. Рекомендация: улучшить фото или снять с продажи."
+                    </div>
+                </div>
+
+                <div class="ai-feature">
+                    <span class="ai-feature-icon">💰</span>
+                    <h3>Анализ рекламных кампаний</h3>
+                    <p>AI определяет, какие кампании приносят прибыль, а какие сливают бюджет.</p>
+                    <div class="ai-example">
+                        "Кампания №3 убыточна: вы тратите 450 ₽ на клик, а маржа всего 280 ₽. Рекомендация: отключить или снизить ставку."
+                    </div>
+                </div>
+
+                <div class="ai-feature">
+                    <span class="ai-feature-icon"></span>
+                    <h3>Push-уведомления о критических изменениях</h3>
+                    <p>Мгновенные алерты, когда что-то идет не так: скачок комиссии, падение продаж, заканчиваются остатки.</p>
+                    <div class="ai-example">
+                        "🚨 Срочно! Комиссия WB в категории 'Электроника' выросла на 3%. Ваша маржа стала отрицательной. Срочно поднимите цену!"
+                    </div>
+                </div>
+            </div>
+
+            <div class="coming-soon">
+                <h3>🎁 Специальное предложение для ранних пользователей</h3>
+                <p>Оставьте заявку сейчас и получите <strong>скидку 50%</strong> на AI-функции при запуске + 3 месяца бесплатного использования.</p>
+                <br>
+                <a href="https://t.me/ProfitRadar_mp_bot" class="cta-button orange">Получить скидку 50% →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section class="ecosystem">
+        <div class="container">
+            <h2 class="section-title">Три точки входа в ProfitRadar</h2>
+            <div class="ecosystem-grid">
+                <div class="ecosystem-item">
+                    <div class="ecosystem-icon"></div>
+                    <h3>Сайт</h3>
+                    <p>Узнайте о возможностях и получите инструкции</p>
+                </div>
+                <div class="ecosystem-item">
+                    <div class="ecosystem-icon">🤖</div>
+                    <h3>Telegram-бот</h3>
+                    <p>Быстрый расчет маржи за 10 секунд</p>
+                </div>
+                <div class="ecosystem-item">
+                    <div class="ecosystem-icon"></div>
+                    <h3>Android-приложение</h3>
+                    <p>Полная функциональность, оффлайн-режим</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA Section -->
+    <section style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); padding: 80px 0; text-align: center; color: white;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🚀 Установите ProfitRadar MP</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.95;">
+                Считайте маржу оффлайн, сохраняйте историю, получайте AI-советы<br>
+                Бесплатно и без регистрации
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://github.com/aorlov182-hash/profitradar-bot/releases/download/v1.0.0/ProfitRadar.apk" 
+                   class="cta-button" 
+                   style="background: white; color: #ff6b35; padding: 18px 40px; font-size: 1.1rem;">
+                    Андроид приложение (файл APK, 49 МБ)
+                </a>
+                <a href="https://t.me/ProfitRadar_mp_bot" 
+                   class="cta-button" 
+                   style="background: rgba(255,255,255,0.2); color: white; padding: 18px 40px; font-size: 1.1rem;">
+                   🤖 Запустить бота
+                </a>
+            </div>
+            <p style="margin-top: 25px; font-size: 0.9rem; opacity: 0.9;">
+                ✅ Android 6.0+ &nbsp;|&nbsp; ✅ Без интернета &nbsp;|&nbsp; ✅ 49 МБ
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <div class="pricing-header">
+                <h2>Тарифы</h2>
+                <div class="pricing-number">03</div>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card free">
+                    <div class="pricing-card-label">FREE</div>
+                    <div class="pricing-card-price">0 ₽</div>
+                    <ul class="pricing-features">
+                        <li>Калькулятор маржи (ручной ввод)</li>
+                        <li>Android-приложение (оффлайн)</li>
+                        <li>Без лимитов на расчёты</li>
+                        <li>Без регистрации</li>
+                        <li>Актуальные тарифы WB/Ozon</li>
+                    </ul>
+                    <a href="https://t.me/ProfitRadar_mp_bot" class="pricing-button">Попробовать бесплатно →</a>
+                </div>
+
+                <div class="pricing-card pro">
+                    <div class="pricing-badge-soon">СКОРО</div>
+                    <div class="pricing-card-label">PRO</div>
+                    <div class="pricing-card-price">990 <span>₽/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>API WB + Ozon (автоподключение)</li>
+                        <li>Автоматический расчёт всех SKU</li>
+                        <li>Ежедневный дайджест прибыли</li>
+                        <li>Алерты при падении маржи</li>
+                        <li>Аналитика топ/антитоп</li>
+                    </ul>
+                    <div class="pricing-pro-note">
+                        Напиши <code>/pro</code> в боте, чтобы записаться в лист ожидания
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Это бесплатно?</div>
+                    <div class="faq-answer">
+                        Базовый расчёт бесплатный. Подписка нужна для автообновления данных и алертов.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Какие маркетплейсы поддерживаете?</div>
+                    <div class="faq-answer">
+                        Сейчас поддерживаем Wildberries и Ozon. В планах — добавить Яндекс.Маркет и другие площадки.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Мои данные в безопасности?</div>
+                    <div class="faq-answer">
+                        Да! Мы используем только read-only доступ к API маркетплейсов. Это значит, что мы можем только читать данные, но не можем ничего изменить. Ваши API-ключи хранятся в зашифрованном виде.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Сколько времени нужно на подключение?</div>
+                    <div class="faq-answer">
+                        Подключение API занимает 2-3 минуты. Нужно скопировать API-ключ из личного кабинета селлера и вставить в бота. После этого все расчеты будут автоматическими.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Начните экономить время и деньги прямо сейчас</h2>
+            <p>Присоединяйтесь к сотням селлеров, которые уже используют ProfitRadar</p>
+            <a href="https://t.me/ProfitRadar_mp_bot" class="cta-button">🚀 Запустить бота бесплатно</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>ProfitRadar MP © 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
